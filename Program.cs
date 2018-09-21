@@ -17,7 +17,7 @@ namespace SimplePasswordGenerator
         private static void Main(string[] args)
         {
 
-          
+
             Random rng = new Random();
 
             AeiouList = new List<char>
@@ -40,13 +40,25 @@ namespace SimplePasswordGenerator
                 PrintableChars.Remove(t);
             }
 
-            //20 Passwörter werden generiert.
-            for (int i = 0; i < 20; i++)
+            //Schleife zum neu generieren bei jedem Tastendruck außer ESC
+            while (true)
             {
-                GenerateNewPw(rng);
-            }
+                //20 Passwörter werden generiert.
+                for (int i = 0; i < 20; i++)
+                {
+                    GenerateNewPw(rng);
+                }
 
-            Console.ReadKey();
+                Console.WriteLine("\nPress the Escape (Esc) key to quit: \n");
+
+                if (Console.ReadKey().Key == ConsoleKey.Escape)
+                {
+                    Environment.Exit(0);
+                }
+               
+                Console.Clear();
+              
+            }
         }
 
         private static void GenerateNewPw(Random rng)
